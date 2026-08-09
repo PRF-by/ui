@@ -1,0 +1,129 @@
+/* Структура/поведение — office (это админ-паттерн, у shop таких таблиц
+   нет), цвета — уже общие токены (--line/--gray-mid/--yellow-dark/...). */
+.panel--table {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.tbl th {
+  text-align: left;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-mid);
+  font-weight: 700;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+  position: relative;
+}
+.tbl td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--gray-light);
+  vertical-align: middle;
+}
+.tbl tbody tr:last-child td {
+  border-bottom: 0;
+}
+.tbl .num,
+.tbl th.num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.tbl tbody tr:hover td {
+  background: #fcfbf6;
+}
+.tbl--click tbody tr {
+  cursor: pointer;
+}
+.tbl tfoot td {
+  padding: 8px 10px;
+  border-top: 1px solid var(--line);
+  border-bottom: 0;
+  color: var(--gray-mid);
+  font-size: 12.5px;
+}
+.tbl tfoot .total td {
+  color: var(--black);
+  font-size: 14px;
+  border-top: 2px solid var(--black);
+}
+.tbl a b {
+  border-bottom: 1px dashed var(--line);
+}
+.tbl a:hover b {
+  border-color: var(--yellow-dark);
+}
+.warnrow td {
+  background: #fff8e1 !important;
+}
+
+.tbl th.chk,
+.tbl td.chk {
+  width: 34px;
+  padding-right: 0;
+}
+.tbl input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--black);
+  cursor: pointer;
+}
+
+/* Сортировка/ресайз колонок — ResizableHead. */
+.th-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.th-sort:hover {
+  color: var(--black);
+}
+.th-sort.on {
+  color: var(--black);
+}
+.th-sort__arrow {
+  width: 9px;
+  height: 9px;
+  opacity: 0;
+  transition:
+    transform 0.12s,
+    opacity 0.12s;
+}
+.th-sort.on .th-sort__arrow {
+  opacity: 1;
+}
+.th-sort__arrow.desc {
+  transform: rotate(180deg);
+}
+/* Ручка растягивания колонки — на правом краю th, шире область захвата,
+   чем видимая линия. */
+.th-resize {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 1;
+}
+.th-resize::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: transparent;
+  transition: background 0.12s;
+}
+.th-resize:hover::after {
+  background: var(--yellow-dark);
+}

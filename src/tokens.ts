@@ -21,6 +21,9 @@ export const colors = {
   grayMid: '#6b7280',
   grayLight: '#f2f2f2',
   yellow: '#ffc107',
+  // Не было в shop (только у office) — стало каноническим, когда на него
+  // понадобилась ссылка из table.css (ховер ручки ресайза колонки).
+  yellowDark: '#ffa000',
   white: '#ffffff',
   line: '#e5e7eb',
 

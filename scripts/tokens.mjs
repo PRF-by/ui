@@ -45,7 +45,6 @@ const compat = `
    на них ссылаться (см. план миграции office на @prf/ui). */
 :root {
   --bad: var(--danger);
-  --yellow-dark: #ffa000;
   --bg: #f6f6f4;
 }
 `

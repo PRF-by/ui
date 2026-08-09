@@ -18,3 +18,12 @@ export type { BadgeProps, BadgeTone } from './components/Badge'
 export { BulkBar } from './components/BulkBar'
 
 export { ConfirmDeleteForm } from './components/ConfirmDeleteForm'
+
+export { TableShell } from './components/TableShell'
+
+export { EmptyRow } from './components/EmptyRow'
+
+export { ResizableHead } from './components/ResizableHead'
+export type { Column, SortDir } from './components/ResizableHead'
+
+export { useRowSelection } from './hooks/useRowSelection'

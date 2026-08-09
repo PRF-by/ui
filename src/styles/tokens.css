@@ -7,6 +7,7 @@
   --gray-mid: #6b7280;
   --gray-light: #f2f2f2;
   --yellow: #ffc107;
+  --yellow-dark: #ffa000;
   --white: #ffffff;
   --line: #e5e7eb;
   --dept-krepezh: #f97316;
@@ -32,6 +33,5 @@
    на них ссылаться (см. план миграции office на @prf/ui). */
 :root {
   --bad: var(--danger);
-  --yellow-dark: #ffa000;
   --bg: #f6f6f4;
 }
