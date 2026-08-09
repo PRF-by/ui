@@ -38,11 +38,13 @@
   transform: rotate(180deg);
 }
 
+/* .ibtn используется не только в Panel — тем же классом иконки-кнопки
+   стилизованы в TagInput/Suppliers/Photos/customers-detail office;
+   значения — точная копия office, чтобы эти места не сдвинулись. */
 .ibtn {
   padding: 6px;
   border-radius: 7px;
   color: var(--gray-mid);
-  display: inline-flex;
 }
 .ibtn:hover {
   background: var(--gray-light);
