@@ -27,3 +27,8 @@ export { ResizableHead } from './components/ResizableHead'
 export type { Column, SortDir } from './components/ResizableHead'
 
 export { useRowSelection } from './hooks/useRowSelection'
+
+export { Drawer } from './components/Drawer'
+
+export { TagInput } from './components/TagInput'
+export type { TagSuggestion } from './components/TagInput'

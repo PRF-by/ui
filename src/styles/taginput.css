@@ -1,0 +1,60 @@
+/* Только то, что реально принадлежит TagInput (scoped под .tagbox/
+   .taghints). Базовые .fchip/.qrow — общая инфраструктура office
+   (фильтр-чипы, быстрый поиск), не трогаем — компонент на них
+   опирается, но не владеет ими. */
+.tagbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  min-height: 38px;
+}
+.tagbox:focus-within {
+  border-color: var(--black);
+}
+.tagbox .fchip {
+  padding: 4px 6px 4px 10px;
+  font-size: 11.5px;
+}
+.tagbox .fchip .ibtn {
+  padding: 1px;
+  border-radius: 4px;
+}
+.tagbox .fchip .ibtn svg {
+  width: 12px;
+  height: 12px;
+}
+.tagbox__in {
+  position: relative;
+  flex: 1;
+  min-width: 120px;
+}
+.tagbox__in input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: none;
+  font: inherit;
+  font-size: 13.5px;
+  padding: 3px 2px;
+}
+.taghints {
+  position: absolute;
+  left: -4px;
+  top: 28px;
+  z-index: 20;
+  width: 260px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow-lift);
+  padding: 5px;
+  display: block;
+}
+.taghints .qrow {
+  padding: 7px 9px;
+}
