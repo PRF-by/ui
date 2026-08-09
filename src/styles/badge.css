@@ -1,0 +1,34 @@
+/* Форма — от того, кто передал tone. Цвет — всегда снаружи, через
+   --badge-color/--badge-bg/--badge-text (компонент их не выбирает). */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.badge--solid {
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  background: var(--badge-bg, var(--badge-color));
+  color: var(--badge-text, var(--white));
+}
+.badge--pastel {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--badge-color);
+  background: var(--badge-bg, transparent);
+}
+.badge--dot::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}

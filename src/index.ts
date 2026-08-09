@@ -11,3 +11,10 @@ export { SubmitButton } from './components/SubmitButton'
 export { Panel } from './components/Panel'
 
 export { Field } from './components/Field'
+
+export { Badge } from './components/Badge'
+export type { BadgeProps, BadgeTone } from './components/Badge'
+
+export { BulkBar } from './components/BulkBar'
+
+export { ConfirmDeleteForm } from './components/ConfirmDeleteForm'

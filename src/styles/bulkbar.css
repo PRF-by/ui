@@ -1,0 +1,38 @@
+/* Появляется вместо/рядом с тулбаром, когда в таблице что-то выбрано
+   чекбоксами. Липнет к верху при прокрутке длинной таблицы. */
+.bulkbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--black);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+}
+.bulkbar__count {
+  color: var(--yellow);
+  white-space: nowrap;
+}
+.bulkbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.bulkbar__actions .btn {
+  padding: 6px 12px;
+  font-size: 12.5px;
+}
+.bulkbar__clear {
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+.bulkbar__clear:hover {
+  color: var(--white);
+}
