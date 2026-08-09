@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Установить зависимости
+        run: npm ci
+
+      - name: Запрещённые lifecycle-скрипты
+        # build/prepare/prepack/postinstall/workspaces триггерят вложенный
+        # npm install у каждого потребителя на каждой установке — см. README.
+        run: |
+          node -e "
+            const pkg = require('./package.json');
+            const forbidden = ['build', 'prepare', 'prepack', 'preinstall', 'postinstall'];
+            const bad = forbidden.filter((k) => pkg.scripts && pkg.scripts[k]);
+            if (pkg.workspaces) bad.push('workspaces');
+            if (bad.length) {
+              console.error('Запрещённые поля в package.json:', bad.join(', '));
+              process.exit(1);
+            }
+          "
+
+      - name: tokens.css актуален
+        run: npm run tokens -- --check
+
+      - name: Типы
+        run: npm run typecheck
+
+      - name: Форматирование
+        run: npx prettier --check .
