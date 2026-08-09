@@ -1,18 +1,13 @@
-export { colors, radius, shadow, elevation, tokens } from './tokens.ts'
-export type { Tokens } from './tokens.ts'
+export { colors, radius, shadow, elevation, tokens } from './tokens'
+export type { Tokens } from './tokens'
 
-export { UiSprite } from './UiSprite.tsx'
+export { UiSprite } from './UiSprite'
 
-export { Button, buttonClassName } from './components/Button.tsx'
-export type {
-  ButtonProps,
-  ButtonOwnProps,
-  ButtonVariant,
-  ButtonSize,
-} from './components/Button.tsx'
+export { Button, buttonClassName } from './components/Button'
+export type { ButtonProps, ButtonOwnProps, ButtonVariant, ButtonSize } from './components/Button'
 
-export { SubmitButton } from './components/SubmitButton.tsx'
+export { SubmitButton } from './components/SubmitButton'
 
-export { Panel } from './components/Panel.tsx'
+export { Panel } from './components/Panel'
 
-export { Field } from './components/Field.tsx'
+export { Field } from './components/Field'
