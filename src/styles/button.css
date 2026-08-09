@@ -1,0 +1,100 @@
+/* Скин — shop (транзишн/hover/active — её паттерны). :disabled и
+   btn--danger в исходном shop не было (там нет форм с реальными async-
+   операциями) — добавлены по образцу office, конфликтов с shop нет. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.12s ease;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn--yellow {
+  background: var(--yellow);
+  color: var(--black);
+}
+.btn--yellow:hover {
+  box-shadow: 0 10px 22px -10px rgba(255, 193, 7, 0.8);
+}
+.btn--black {
+  background: var(--black);
+  color: var(--white);
+}
+.btn--black:hover {
+  background: var(--gray-dark);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--black);
+  border: 1.5px solid var(--line);
+}
+.btn--ghost:hover {
+  border-color: var(--black);
+}
+.btn--danger {
+  background: var(--danger);
+  color: var(--white);
+}
+.btn--danger:hover {
+  background: #991b1b;
+}
+
+/* Плотность — выбор вызывающего кода (office почти всегда --sm/--xs,
+   shop почти всегда база), не решение самого компонента. */
+.btn--xs {
+  padding: 6px 11px;
+  font-size: 12px;
+  border-radius: var(--radius-sm);
+}
+.btn--sm {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+.btn--lg {
+  padding: 15px 26px;
+  font-size: 15px;
+}
+.btn--block {
+  width: 100%;
+}
+
+/* Индикатор ожидания у SubmitButton. */
+@keyframes prf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.22);
+  border-top-color: currentColor;
+  animation: prf-spin 0.6s linear infinite;
+  flex: none;
+}
+.btn .spinner {
+  margin-right: 6px;
+}
+.btn--ghost .spinner,
+.btn--black .spinner {
+  border-color: rgba(255, 255, 255, 0.3);
+}

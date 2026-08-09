@@ -1,3 +1,6 @@
 /* Единая точка входа для стилей @prf/ui. Импортируется один раз в корневом
    layout приложения-потребителя, до его собственного globals.css. */
 @import './tokens.css';
+@import './button.css';
+@import './panel.css';
+@import './field.css';

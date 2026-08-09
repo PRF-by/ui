@@ -1,0 +1,54 @@
+/* Скин — shop (--radius/--shadow уже общие токены). Отступ 16px/22px —
+   паттерн shop (media query вместо фиксированного 16px 18px office). */
+.panel {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+@media (min-width: 720px) {
+  .panel {
+    padding: 22px;
+  }
+}
+
+.panel__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.panel__head h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 800;
+}
+.panel__head .btn {
+  margin-left: auto;
+}
+.panel--closed .panel__head {
+  margin-bottom: 0;
+}
+
+.chev {
+  transition: transform 0.14s;
+}
+.chev--open {
+  transform: rotate(180deg);
+}
+
+.ibtn {
+  padding: 6px;
+  border-radius: 7px;
+  color: var(--gray-mid);
+  display: inline-flex;
+}
+.ibtn:hover {
+  background: var(--gray-light);
+  color: var(--black);
+}
+.ibtn svg {
+  width: 15px;
+  height: 15px;
+}
