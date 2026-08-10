@@ -30,6 +30,22 @@ function clampWidth(w: number): number {
   return Math.min(Math.max(w, MIN_WIDTH), max)
 }
 
+/**
+ * Раздел в узкой иконочной панели по правому краю drawer'а — как
+ * Details/Comments/Activity в детальной панели задачи K. icon — обычный
+ * ReactNode (например, `<svg><use href="#i-x"/></svg>`), не строка-id:
+ * у каждого приложения свой спрайт (office/shop/pos), Drawer в @prf/ui
+ * не должен знать, какие иконки в нём есть.
+ */
+export interface DrawerSection {
+  id: string
+  icon: ReactNode
+  label: string
+  /** Число на бейдже поверх иконки — например, количество непрочитанных. */
+  badgeCount?: number
+  content: ReactNode
+}
+
 export function Drawer({
   title,
   subtitle,
@@ -37,6 +53,8 @@ export function Drawer({
   closeOnEsc = true,
   closeOnVeilClick = true,
   widthKey = 'prf_drawer_width',
+  sections,
+  defaultSection,
   children,
 }: {
   title: ReactNode
@@ -47,9 +65,19 @@ export function Drawer({
   closeOnVeilClick?: boolean
   /** Свой ключ, если приложению нужна отдельная от остальных память ширины. */
   widthKey?: string
-  children: ReactNode
+  /**
+   * Разделы под иконочной панелью справа — контент переключается кликом,
+   * без похода на сервер. Если не заданы, drawer работает как раньше:
+   * children — единственное и единое тело панели.
+   */
+  sections?: DrawerSection[]
+  /** Какой раздел открыт первым — по умолчанию первый в списке. */
+  defaultSection?: string
+  /** Постоянная часть тела — над разделами, видна независимо от выбранного раздела. */
+  children?: ReactNode
 }) {
   const [width, setWidth] = useState<number | null>(null)
+  const [activeSection, setActiveSection] = useState(defaultSection ?? sections?.[0]?.id)
   const dragging = useRef(false)
 
   useEffect(() => {
@@ -132,7 +160,32 @@ export function Drawer({
             </svg>
           </button>
         </div>
-        <div className="drawer__body">{children}</div>
+        <div className={sections ? 'drawer__body drawer__body--fixed' : 'drawer__body'}>
+          {children}
+        </div>
+        {sections && sections.length > 0 && (
+          <div className="drawer__sections">
+            <div className="drawer__sections-content">
+              {sections.find((s) => s.id === activeSection)?.content}
+            </div>
+            <nav className="drawer__sections-nav" aria-label="Разделы">
+              {sections.map((s) => (
+                <button
+                  key={s.id}
+                  type="button"
+                  className={`drawer__section-tab${s.id === activeSection ? ' on' : ''}`}
+                  onClick={() => setActiveSection(s.id)}
+                  title={s.label}
+                >
+                  {s.icon}
+                  {Boolean(s.badgeCount) && (
+                    <span className="drawer__section-badge">{s.badgeCount}</span>
+                  )}
+                </button>
+              ))}
+            </nav>
+          </div>
+        )}
       </div>
     </div>
   )
