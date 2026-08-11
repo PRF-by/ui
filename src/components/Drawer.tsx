@@ -55,6 +55,7 @@ export function Drawer({
   widthKey = 'prf_drawer_width',
   sections,
   defaultSection,
+  footer,
   children,
 }: {
   title: ReactNode
@@ -73,6 +74,14 @@ export function Drawer({
   sections?: DrawerSection[]
   /** Какой раздел открыт первым — по умолчанию первый в списке. */
   defaultSection?: string
+  /**
+   * Кнопки действий — прибиты к низу панели, не уезжают со скроллом и не
+   * зависят от того, какой раздел сейчас открыт (кнопка «Сохранить»
+   * сохраняет всю форму целиком, а не только видимый раздел). Класть
+   * сюда `<div className="toolbar">…</div>` с кнопками — сам footer
+   * задаёт только отступы и границу, ряд кнопок — не его забота.
+   */
+  footer?: ReactNode
   /** Постоянная часть тела — над разделами, видна независимо от выбранного раздела. */
   children?: ReactNode
 }) {
@@ -186,6 +195,7 @@ export function Drawer({
             </nav>
           </div>
         )}
+        {footer && <div className="drawer__footer">{footer}</div>}
       </div>
     </div>
   )

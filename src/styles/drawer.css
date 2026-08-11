@@ -12,6 +12,10 @@
   justify-content: flex-end;
 }
 .drawer {
+  /* Общий предок .drawer__body/.drawer__sections-content/.drawer__footer
+     — объявлен здесь, а не на каждом по отдельности, чтобы footer (их
+     сосед, не потомок) тоже видел то же значение через каскад. */
+  --dpad-x: 20px;
   position: relative;
   width: clamp(420px, 92vw, 480px);
   height: 100vh;
@@ -205,4 +209,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Кнопки действий — прибиты к низу, не уезжают со скроллом body/sections
+   и не зависят от выбранного раздела. Тот же -dpad-x приём, что у
+   .dhead в office (см. globals.css): отрицательные поля компенсируют
+   горизонтальный паддинг предка, разделительная линия идёт край в край. */
+.drawer__footer {
+  flex: none;
+  margin: 0 calc(-1 * var(--dpad-x, 20px));
+  padding: 14px var(--dpad-x, 20px);
+  border-top: 1px solid var(--line);
 }
