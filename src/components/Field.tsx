@@ -10,15 +10,21 @@ import type { ReactNode } from 'react'
 export function Field({
   label,
   wide,
+  extra,
   children,
 }: {
   label: string
   wide?: boolean
+  /** Например, кнопка-иконка AI-заполнения рядом с подписью. */
+  extra?: ReactNode
   children: ReactNode
 }) {
   return (
     <label className={wide ? 'field field--wide' : 'field'}>
-      <span>{label}</span>
+      <span>
+        {label}
+        {extra}
+      </span>
       {children}
     </label>
   )
