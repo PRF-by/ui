@@ -189,7 +189,17 @@ export function Drawer({
             }
           >
             <div className="drawer__sections-content">
-              {sections.find((s) => s.id === activeSection)?.content}
+              {/* hidden, не условный рендер одного content — если под
+                  всеми разделами один <form> (как в карточке товара),
+                  снятие с DOM неактивного раздела вычёркивает его поля
+                  из FormData при сохранении: значение, которое человек
+                  только что ввёл, молча потеряется. Тот же принцип, что
+                  у Panel/IconRail в этом же пакете и в office. */}
+              {sections.map((s) => (
+                <div key={s.id} hidden={s.id !== activeSection}>
+                  {s.content}
+                </div>
+              ))}
             </div>
             <nav className="drawer__sections-nav" aria-label="Разделы">
               {sections.map((s) => (
