@@ -48,6 +48,22 @@ export const radius = {
   md: 12,
 } as const
 
+// Отступы карточек/панелей/плашек (padding, margin, gap контейнеров) —
+// раньше каждый компонент подбирал число сам (11 и 13, и 12, и 9x12…),
+// формально разное, а по смыслу одна и та же плотность. Пять ступеней
+// вместо строгой 4/8-сетки: значения подобраны под то, что уже
+// доминировало в обоих приложениях (частотный разбор globals.css), не
+// придуманы с нуля — так переход почти не сдвигает то, что и так было
+// на месте, только называет и подтягивает то, что разъехалось на 1-3px
+// без причины.
+export const space = {
+  xs: 6,
+  sm: 10,
+  md: 14,
+  lg: 16,
+  xl: 22,
+} as const
+
 // CSS-строки для web (box-shadow) — RN-эквивалент см. elevation ниже.
 export const shadow = {
   card: '0 10px 30px -18px rgba(17, 17, 17, 0.35)',
@@ -73,6 +89,6 @@ export const elevation = {
   },
 } as const
 
-export const tokens = { colors, radius, shadow, elevation } as const
+export const tokens = { colors, radius, space, shadow, elevation } as const
 
 export type Tokens = typeof tokens

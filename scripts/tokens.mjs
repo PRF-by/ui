@@ -9,13 +9,13 @@
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { colors, radius, shadow } from '../src/tokens.ts'
+import { colors, radius, space, shadow } from '../src/tokens.ts'
 
 const kebab = (s) => s.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
 
-function cssVars(obj, unit = '') {
+function cssVars(obj, unit = '', prefix = '') {
   return Object.entries(obj)
-    .map(([key, value]) => `  --${kebab(key)}: ${value}${unit};`)
+    .map(([key, value]) => `  --${prefix}${kebab(key)}: ${value}${unit};`)
     .join('\n')
 }
 
@@ -30,6 +30,8 @@ const generated = `/* СГЕНЕРИРОВАНО из src/tokens.ts — не р�
 ${cssVars(colors)}
 
 ${radiusCss}
+
+${cssVars(space, 'px', 'space-')}
 
   --shadow: ${shadow.card};
   --shadow-lift: ${shadow.lift};

@@ -17,7 +17,7 @@ import type { CSSProperties, ReactNode } from 'react'
 export function SubmitButton({
   children,
   pendingLabel,
-  className = 'btn btn--yellow',
+  className = 'btn btn--yellow btn--sm',
   icon,
   name,
   value,

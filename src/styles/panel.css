@@ -1,22 +1,22 @@
-/* Скин — shop (--radius/--shadow уже общие токены). Отступ 16px/22px —
+/* Скин — shop (--radius/--shadow уже общие токены). Отступ --space-lg/xl —
    паттерн shop (media query вместо фиксированного 16px 18px office). */
 .panel {
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 16px;
+  padding: var(--space-lg);
 }
 @media (min-width: 720px) {
   .panel {
-    padding: 22px;
+    padding: var(--space-xl);
   }
 }
 
 .panel__head {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 .panel__head h2 {
   font-size: 13px;
@@ -42,7 +42,7 @@
    стилизованы в TagInput/Suppliers/Photos/customers-detail office;
    значения — точная копия office, чтобы эти места не сдвинулись. */
 .ibtn {
-  padding: 6px;
+  padding: var(--space-xs);
   border-radius: 7px;
   color: var(--gray-mid);
 }
