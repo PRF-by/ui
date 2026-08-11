@@ -29,11 +29,13 @@ export function TagInput({
   initial = [],
   placeholder = 'тег, ещё тег…',
   fetchSuggestions,
+  disabled,
 }: {
   name?: string
   initial?: string[]
   placeholder?: string
   fetchSuggestions?: (query: string, signal: AbortSignal) => Promise<TagSuggestion[]>
+  disabled?: boolean
 }) {
   const [tags, setTags] = useState<string[]>(initial)
   const [draft, setDraft] = useState('')
@@ -102,12 +104,18 @@ export function TagInput({
   }
 
   return (
-    <div className="tagbox" ref={box}>
+    <div className={disabled ? 'tagbox is-disabled' : 'tagbox'} ref={box}>
       <input type="hidden" name={name} value={tags.join(', ')} />
       {tags.map((tag) => (
         <span className="fchip on" key={tag}>
           {tag}
-          <button className="ibtn" type="button" onClick={() => remove(tag)} title="Убрать">
+          <button
+            className="ibtn"
+            type="button"
+            onClick={() => remove(tag)}
+            title="Убрать"
+            disabled={disabled}
+          >
             <svg>
               <use href="#i-x" />
             </svg>
@@ -120,6 +128,7 @@ export function TagInput({
           onChange={(e) => setDraft(e.target.value)}
           onKeyDown={onKeyDown}
           placeholder={tags.length === 0 ? placeholder : 'ещё тег…'}
+          disabled={disabled}
         />
         {openHints && hints.length > 0 && (
           <span className="taghints">

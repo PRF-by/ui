@@ -16,6 +16,10 @@
 .tagbox:focus-within {
   border-color: var(--black);
 }
+.tagbox.is-disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
 .tagbox .fchip {
   padding: 4px 6px 4px 10px;
   font-size: 11.5px;
