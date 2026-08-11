@@ -131,12 +131,14 @@
 }
 /* Когда есть sections — тело больше не растягивается и не скроллится
    само (это теперь работа .drawer__sections-content ниже), оно просто
-   вмещает постоянную часть (children) в её естественную высоту. */
+   вмещает постоянную часть (children) в её естественную высоту. Низ
+   не 0 — иначе последнее поле (например, «Отдел») упирается прямо в
+   border-top рейки без единого пикселя воздуха. */
 .drawer__body--fixed {
   --dpad-x: 20px;
   flex: none;
   overflow: visible;
-  padding: 18px 20px 0;
+  padding: 18px 20px var(--space-md);
 }
 .drawer__body--fixed:empty {
   display: none;

@@ -19,7 +19,10 @@
 .field select,
 .field textarea {
   font: inherit;
-  padding: 11px 14px;
+  /* Тот же вертикальный паддинг, что у .btn--sm — раньше поля были
+     заметно выше кнопок рядом с ними (11px против 8px), теперь одна
+     плотность на оба. */
+  padding: 8px var(--space-md);
   border: 1.5px solid var(--line);
   border-radius: var(--radius-sm);
   outline: none;
