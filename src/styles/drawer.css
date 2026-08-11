@@ -152,6 +152,14 @@
   display: flex;
   border-top: 1px solid var(--line);
 }
+/* compactSections — короткие формы не растягиваются на всю высоту,
+   пустая полоса под рейкой не появляется (см. пропс в Drawer.tsx). */
+.drawer__sections--compact {
+  flex: none;
+}
+.drawer__sections--compact .drawer__sections-content {
+  overflow-y: visible;
+}
 .drawer__sections-content {
   flex: 1;
   min-width: 0;

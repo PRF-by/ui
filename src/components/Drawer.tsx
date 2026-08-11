@@ -55,6 +55,7 @@ export function Drawer({
   widthKey = 'prf_drawer_width',
   sections,
   defaultSection,
+  compactSections = false,
   footer,
   children,
 }: {
@@ -74,6 +75,15 @@ export function Drawer({
   sections?: DrawerSection[]
   /** Какой раздел открыт первым — по умолчанию первый в списке. */
   defaultSection?: string
+  /**
+   * Разделы не растягиваются на всю высоту панели, а занимают только
+   * место под своим содержимым — для коротких форм (2-4 поля на
+   * раздел), где flex:1 по умолчанию оставляет пустую полосу под
+   * рейкой и над footer. Разделам с длинным содержимым (переписка,
+   * фото/поставщики) остаётся дефолт — там место естественно
+   * заполняется.
+   */
+  compactSections?: boolean
   /**
    * Кнопки действий — прибиты к низу панели, не уезжают со скроллом и не
    * зависят от того, какой раздел сейчас открыт (кнопка «Сохранить»
@@ -173,7 +183,11 @@ export function Drawer({
           {children}
         </div>
         {sections && sections.length > 0 && (
-          <div className="drawer__sections">
+          <div
+            className={
+              compactSections ? 'drawer__sections drawer__sections--compact' : 'drawer__sections'
+            }
+          >
             <div className="drawer__sections-content">
               {sections.find((s) => s.id === activeSection)?.content}
             </div>
