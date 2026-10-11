@@ -82,6 +82,9 @@
   align-items: center;
   gap: 4px;
   cursor: pointer;
+  /* У кнопки свои text-transform и letter-spacing — иначе сортируемые колонки не капсом. */
+  text-transform: inherit;
+  letter-spacing: inherit;
 }
 .th-sort:hover {
   color: var(--black);
