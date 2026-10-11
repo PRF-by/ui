@@ -11,6 +11,8 @@ export interface Column {
   defaultWidth?: number
   /** Без ручки растягивания — обычно последняя колонка (действия) или узкая служебная. */
   fixed?: boolean
+  /** Забирает свободное место строки (обычно название): без ширины и без ручки. */
+  flex?: boolean
 }
 
 export type SortDir = 'asc' | 'desc'
@@ -99,7 +101,7 @@ export function ResizableHead({
       <tr>
         {leading}
         {columns.map((col) => {
-          const width = widths[col.key] ?? col.defaultWidth
+          const width = col.flex ? undefined : (widths[col.key] ?? col.defaultWidth)
           const label = col.sortable ? (
             <button
               type="button"
@@ -124,7 +126,7 @@ export function ResizableHead({
               style={width ? { width } : undefined}
             >
               {label}
-              {!col.fixed && (
+              {!col.fixed && !col.flex && (
                 <span
                   className="th-resize"
                   onMouseDown={(e) => {
